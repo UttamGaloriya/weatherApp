@@ -1,0 +1,18 @@
+<app-navbar></app-navbar>
+<div class="home-page container">
+    <div class="weather-location">
+        <h1>{{data?.location.name}}</h1>
+        <span>{{data?.location.country}} ,</span>
+        <span>{{data?.location.region}}</span>
+    </div>
+    <div class="weather-data">
+        <img src={{data?.current.condition.icon}} alt="not show" srcset="">
+        <div>
+            <li>{{data?.current.temp_c}}&deg;C</li>
+            <li>Humidity:<span class="list-span">{{data?.current.humidity}}%</span> </li>
+            <li>Wind: <span class="list-span">{{data?.current.gust_kph}}km/h</span> </li>
+            <li>{{data?.location.localtime}}</li>
+        </div>
+    </div>
+    <app-chart></app-chart>
+</div>
