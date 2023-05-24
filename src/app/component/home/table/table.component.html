@@ -1,0 +1,75 @@
+<app-navbar></app-navbar>
+<div class="table-page container">
+    <mat-card class="container">
+        <div>
+            <div class="list-item" *ngFor="let data of item ,let i=index">
+                <div class="weather-details" [ngClass]="i==temp_id ?'data-size':''">
+                    <div class="date">{{data.date}}</div>
+                    <div class="max-min-temp">
+                        <span class="max">
+                            {{data.day.maxtemp_c}}<sup>o</sup>/</span>
+                        <span class="min">{{data.day.mintemp_c}}<sup>o</sup></span>
+                    </div>
+
+                    <div class="condition">
+                        <img src={{data.day.condition.icon}} alt="not found">
+                        <span>{{data.day.condition.text}}</span>
+                    </div>
+
+                    <div class="rain flex-center">
+                        <span class="material-symbols-outlined">
+                            rainy
+                        </span>
+                        <span>{{data.day.daily_chance_of_rain}}%</span>
+                    </div>
+
+
+                    <div class="wind-speed"><img src="#" alt=""><span>{{data.day.maxwind_kph}}km/h</span></div>
+
+                    <button mat-icon-button aria-label="Example icon button with a menu icon" (click)="listDetails(i)">
+                        <mat-icon>keyboard_arrow_down</mat-icon>
+                    </button>
+                </div>
+                <div *ngIf="i==temp_id" class="weather-full-details">
+                    <div class="morning">
+                        <!-- <img src={{data.day.condition.icon}} alt="not found" width="48" height="48"> -->
+                        <img width="48" height="48" src="https://img.icons8.com/fluency/48/sun.png" alt="sun" />
+
+
+                        <div>
+                            <div class="morning-title">Sunrise</div>
+                            <div class="morning-details">{{data.astro.sunrise}}</div>
+                        </div>
+                        <div>
+                            <div class="morning-title">Sunset</div>
+                            <div class="morning-details">{{data.astro.sunset}}</div>
+                        </div>
+                        <div>
+                            <div class="morning-title">UV Index</div>
+                            <div class="morning-details">{{data.day.uv}}</div>
+                        </div>
+
+
+                    </div>
+                    <div class="night">
+                        <img width="48" height="48" src="https://img.icons8.com/plumpy/100/bright-moon.png"
+                            alt="bright-moon" />
+                        <div>
+                            <div class="moon-title">Moonrise</div>
+                            <div class="moon-details">{{data.astro.moonrise}}</div>
+                        </div>
+                        <div>
+                            <div class="moon-title">Moonset</div>
+                            <div class="moon-details">{{data.astro.moonset}}</div>
+                        </div>
+                        <div>
+                            <div class="moon-title">Moonphase</div>
+                            <div class="moon-details">{{data.astro.moon_phase}}</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</div>

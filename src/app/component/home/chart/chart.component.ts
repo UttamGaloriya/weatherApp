@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Chart } from 'chart.js/auto';
+import { WeatherapiService } from 'src/app/_services/weatherapi.service';
 
 @Component({
   selector: 'app-chart',
@@ -8,22 +10,59 @@ import { Chart } from 'chart.js/auto';
 })
 export class ChartComponent implements OnInit {
 
-  constructor() { }
+
+
+
+
+  data: any
+  arr = [];
+  day_id: number = 0;
+  constructor(private services: WeatherapiService) { }
+  myarry_labels: any = []
+  myarry_data: any = []
 
   ngOnInit(): void {
-    // const ctx = document.getElementById('myChart');
 
-    new Chart("myChart", {
-      type: 'bar',
+    this.services.getWeather().subscribe(
+      (res) => { this.data = res, this.mydata([res], 0), this.mychart() },
+      (err) => { console.log(err) }
+    )
+  }
+
+
+  mydata(res: any, id: number) {
+    res.forEach((element: any) => {
+      element.forecast.forecastday[id].hour.forEach((hour: any) => {
+        const timeString = hour.time;
+        const timeOnly = timeString.split(' ')[1];
+        const hourOnly = timeOnly.split(':')[0];
+        // console.log(hourOnly)
+        if (this.cureentTime() <= hourOnly) {
+          this.myarry_labels.push(hourOnly)
+          this.myarry_data.push(hour.temp_c)
+          this.cureentTime()
+        }
+
+      });
+    });
+  }
+
+  mychart() {
+    new Chart('myChart', {
+      type: 'line',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: this.myarry_labels,
         datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
+          label: 'Temp',
+          data: this.myarry_data,
+          // Color: '#000',
+          borderColor: '#000',
           borderWidth: 1,
-          backgroundColor: '#0b0b0b'
-
-        }]
+          backgroundColor: '#e8c32e',
+          // backgroundColor: '#7eaffc',
+          fill: true
+        },
+        ]
       },
       options: {
         scales: {
@@ -34,5 +73,20 @@ export class ChartComponent implements OnInit {
       }
     });
   }
+
+  onTabChange(event: MatTabChangeEvent) {
+    const selectedIndex = event.index;
+    console.log(selectedIndex)
+    // this.mydata(this.data, selectedIndex)
+    // this.mychart()
+  }
+  cureentTime() {
+    let today = new Date();
+    var curentHour = today.getHours()
+    return curentHour
+
+  }
+
+
 
 }

@@ -36,18 +36,51 @@ $weatherApp-theme: mat.define-light-theme((
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;background: #000; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;background: #E5E5E5 }
 
 //navbar
-.navbar{height: 70px;display: flex;align-items: center;background: #fff;color: #000;padding: 0px 20px;}
-.navbar .link{font-size: 22px;color: black;text-decoration: none;}
-
+.navbar{height: 70px;display: flex;align-items: center;background: #564efa;color: #000;padding: 0px 20px;max-width: 1400px;margin: 0 auto}
+.navbar .link{font-size: 22px;color: rgb(255, 255, 255);text-decoration: none;margin-right: 16px;}
+.navbar .link:hover ,.navbar .link:focus{text-decoration: underline;}
 //home-page
 .container{max-width: 1400px;margin: 0 auto;padding: 20px;}
-.home-page{color: #fff;}
+.home-page{color: #000000;}
 .weather-location{
-  h1{font-weight: 200;letter-spacing: 2px;}
+  h1{font-weight: 500;letter-spacing: 2px;margin: 0;}
 }
+//location-title
+.location-data{display: flex;align-items: center;}
+.location-data img{height: 80px;width: 80px;}
+
+
+//chart
+.chart-data{height: 400px;}
+
 .weather-data li{margin: 5px 0px;}
 .list-span{margin-left: 10px;}
-.chart-cnvas{height:500px;width: 600px;}
+
+.flex-center{display: flex;align-items: center;}
+
+.list-item{border: 1px solid rgb(2, 2, 2);padding: 0px 10px;  border-collapse:separate;
+}
+.list-item:not(:last-child){border-bottom: 0;}
+.weather-details{display: flex;align-items: center;justify-content: space-between}
+.weather-details div{width: 20%;text-align:left;}
+.condition{display: flex;align-items: center;}
+.condition img{height: 50px;}
+.weather-full-details{transition: all 0.5s ease;}
+.material-symbols-outlined{color: rgb(84, 208, 208);margin-right: 5px;}
+.max-min-temp .max{font-size: 22px;}
+//data-size
+.data-size{font-size: 22px;}
+
+//weather-full-details
+.weather-full-details{display: flex;justify-content: space-between;padding: 10px 25px;}
+.morning,.night { display: flex;align-items: center;gap: 10px;text-align: center;}
+.morning-title,.moon-title{font-size: 18px;font-weight: 500;}
+.morning-details,.moon-details{font-size: 16px;}
+
+.searchbox{  height: 40px;
+  width: 50%;
+  font-size: 20px;
+  padding: 10px;}

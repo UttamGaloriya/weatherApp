@@ -8,7 +8,12 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './component/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ChartComponent } from './component/home/chart/chart.component';
-
+import { MatTabsModule } from '@angular/material/tabs';
+import { TableComponent } from './component/home/table/table.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,13 +21,19 @@ import { ChartComponent } from './component/home/chart/chart.component';
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    ChartComponent
+    ChartComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTabsModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    FormsModule
 
 
 

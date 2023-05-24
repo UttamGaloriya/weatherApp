@@ -1,18 +1,27 @@
 <app-navbar></app-navbar>
-<div class="home-page container">
-    <div class="weather-location">
-        <h1>{{data?.location.name}}</h1>
-        <span>{{data?.location.country}} ,</span>
-        <span>{{data?.location.region}}</span>
-    </div>
-    <div class="weather-data">
-        <img src={{data?.current.condition.icon}} alt="not show" srcset="">
-        <div>
-            <li>{{data?.current.temp_c}}&deg;C</li>
-            <li>Humidity:<span class="list-span">{{data?.current.humidity}}%</span> </li>
-            <li>Wind: <span class="list-span">{{data?.current.gust_kph}}km/h</span> </li>
-            <li>{{data?.location.localtime}}</li>
+<mat-card class="container">
+    <div class="home-page container">
+        <div class="weather-location">
+
+            <div class="location-data">
+                <img src={{data?.current.condition.icon}} alt="not show" srcset="">
+                <div class="location-details">
+                    <h1>{{data?.location.name}}</h1>
+                    <span>{{data?.location.country}} ,</span>
+                    <span>{{data?.location.region}}</span>
+                </div>
+
+
+            </div>
         </div>
+        <div class="weather-data">
+            <div>
+                <li>{{data?.current.temp_c}}&deg;C</li>
+                <li>Humidity:<span class="list-span">{{data?.current.humidity}}%</span> </li>
+                <li>Wind: <span class="list-span">{{data?.current.gust_kph}}km/h</span> </li>
+                <li>{{data?.location.localtime}}</li>
+            </div>
+        </div>
+        <app-chart class="chart-data"></app-chart>
     </div>
-    <app-chart></app-chart>
-</div>
+</mat-card>
