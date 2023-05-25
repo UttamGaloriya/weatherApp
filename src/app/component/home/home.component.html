@@ -1,5 +1,9 @@
 <app-navbar></app-navbar>
-<mat-card class="container">
+<div class="center">
+    <div class="lds-hourglass" *ngIf="!loading"></div>
+</div>
+
+<mat-card class="container" *ngIf="loading">
     <div class="home-page container">
         <div class="weather-location">
 
@@ -22,6 +26,8 @@
                 <li>{{data?.location.localtime}}</li>
             </div>
         </div>
-        <app-chart class="chart-data"></app-chart>
+        <!-- <app-chart class="chart-data"></app-chart> -->
+        <div class="ng-chart"><app-ng-chart></app-ng-chart></div>
+
     </div>
 </mat-card>

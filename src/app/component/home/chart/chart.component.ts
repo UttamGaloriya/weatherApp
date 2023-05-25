@@ -46,7 +46,7 @@ export class ChartComponent implements OnInit {
       });
     });
   }
-
+  // 'rgba(232, 195, 46,0.5)'
   mychart() {
     new Chart('myChart', {
       type: 'line',
@@ -58,7 +58,12 @@ export class ChartComponent implements OnInit {
           // Color: '#000',
           borderColor: '#000',
           borderWidth: 1,
-          backgroundColor: '#e8c32e',
+          backgroundColor: function (context) {
+            var index = context.dataIndex;
+
+
+            return "#b0b0b0"
+          },
           // backgroundColor: '#7eaffc',
           fill: true
         },

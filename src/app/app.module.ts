@@ -14,6 +14,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import { NgChartsModule } from 'ng2-charts';
+import { NgChartComponent } from './component/home/ng-chart/ng-chart.component';
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     HomeComponent,
     ChartComponent,
-    TableComponent
+    TableComponent,
+    NgChartComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import { FormsModule } from '@angular/forms';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    NgChartsModule
 
 
 
