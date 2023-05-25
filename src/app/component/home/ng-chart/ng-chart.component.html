@@ -1,11 +1,15 @@
-<mat-tab-group mat-align-tabs="center" headerPosition="below" (selectedTabChange)="onTabChange($event)">
-    <mat-tab *ngFor="let item of matLable">
+<mat-tab-group mat-align-tabs="center" headerPosition="below" (selectedTabChange)="onTabChange($event)"
+    class="ng-chart">
+    <mat-tab *ngFor="let item of mt">
         <ng-template mat-tab-label>
-            <img width="48" height="48" src="https://img.icons8.com/fluency/48/sun.png" alt="sun" />
+            <div class="mat-lable-custom">
+                <img width="60" height="60" src={{item.icon}} alt="sun" />
+                <p>{{ item.date }}</p>
+                <p>{{item.day}}</p>
+            </div>
 
-            {{item}}
         </ng-template>
-        <canvas [height]="" width="50px" baseChart class="chart" [data]="barChartData" [options]="barChartOptions"
+        <canvas height="25px" width="50px" baseChart class="chart" [data]="barChartData" [options]="barChartOptions"
             [type]="barChartType">
         </canvas>
     </mat-tab>

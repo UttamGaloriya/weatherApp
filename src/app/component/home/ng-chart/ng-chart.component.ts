@@ -17,6 +17,7 @@ export class NgChartComponent implements OnInit {
   data: any
 
   matLable: string[] = ['DAY 1', 'DAY 2', 'DAY 3', 'DAY 4', 'DAY 5', 'DAY 6', 'DAY 7', 'DAY 8', 'DAY 9', 'DAY 10', 'DAY 11', 'DAY 12', 'DAY 13', 'DAY 14',]
+  mt: any[] = []
   constructor(private services: WeatherapiService) { }
 
   ngOnInit(): void {
@@ -27,33 +28,35 @@ export class NgChartComponent implements OnInit {
 
   hourData(id: number = 0) {
     this.services.getWeather().subscribe(
-      (res) => { this.data = res, this.mydata([res], id), this.xyz() },
+      (res) => { this.data = res, this.mydata([res], id), this.chartData(), this.matLablex([res]) },
       (err) => { console.log(err) }
     )
+
   }
+
+  matLablex(res: any) {
+    res.forEach((res: any) => {
+      res.forecast.forecastday.forEach((res: any) => {
+        this.mt.push({ date: res.date, icon: res.day.condition.icon, day: this.getDayOfWeek(res.date) })
+      })
+    })
+  }
+
 
   mydata(res: any, id: number) {
     console.log(this.myarry_data);
-    // console.log(this.myarry_labels);
     console.log("myid " + id)
     res.forEach((element: any) => {
       element.forecast.forecastday[id].hour.forEach((hour: any) => {
         const timeString = hour.time;
         const timeOnly = timeString.split(' ')[1];
         const hourOnly = timeOnly.split(':')[0];
-        // console.log(hourOnly)
-        // if (this.cureentTime() <= hourOnly) {
         this.myarry_labels.push(hourOnly)
         this.myarry_data.push(hour.temp_c)
-        // this.cureentTime()
-        // }
-
       });
     });
     this.dx = this.myarry_data
-    this.xyz()
-
-
+    this.chartData()
   }
 
 
@@ -62,13 +65,8 @@ export class NgChartComponent implements OnInit {
     this.myarry_data = []
     this.myarry_labels = []
     console.log(selectedIndex)
-    // this.hourData(selectedIndex)
     this.mydata([this.data], selectedIndex)
   }
-
-
-
-
 
 
   barChartOptions: ChartConfiguration['options'] = {
@@ -84,7 +82,6 @@ export class NgChartComponent implements OnInit {
       legend: {
         display: true,
       },
-
     }
   };
 
@@ -93,21 +90,26 @@ export class NgChartComponent implements OnInit {
     labels: this.myarry_labels,
     datasets: [
       { data: this.myarry_data, label: 'Temp', fill: true },
-
     ]
   };
-  xyz() {
+
+  chartData() {
     this.barChartData = {
       labels: this.myarry_labels,
       datasets: [
         {
           data: this.myarry_data,
-          label: 'Temp',
+          label: 'Temperature',
           fill: true,
-
         },
       ]
     };
+  }
 
+  getDayOfWeek(dateString: string | number | Date) {
+    const date = new Date(dateString);
+    const dayOfWeek = date.getDay();
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    return daysOfWeek[dayOfWeek];
   }
 }

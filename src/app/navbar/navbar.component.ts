@@ -9,15 +9,15 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  // @Input()
   search = ''
   city: any = ''
   constructor(private userServices: WeatherapiService, private active: ActivatedRoute) {
-    this.active.queryParams.subscribe((res) => {
-      console.log(res['q'])
-      this.city = res['q'];
+    this.userServices.getWeather().subscribe(
+      ((res: any) => { this.city = res.location.name }),
+      ((error: any) => console.log(error)),
+      () => console.log('done')
 
-    });
+    )
   }
 
   ngOnInit(): void {
@@ -25,7 +25,16 @@ export class NavbarComponent implements OnInit {
 
 
   myLocation() {
-    if (this.search.length > 2) { this.userServices.getMylocation(this.search) }
+    if (this.search.length > 2) { this.userServices.updateCity(this.search) }
+  }
+
+  getDayOfWeek(dateString: string | number | Date) {
+    const date = new Date(dateString);
+    const dayOfWeek = date.getDay();
+
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    return daysOfWeek[dayOfWeek];
   }
 
 }

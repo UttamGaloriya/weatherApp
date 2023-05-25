@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { NgChartsModule } from 'ng2-charts';
 import { NgChartComponent } from './component/home/ng-chart/ng-chart.component';
+import { DAYPipe } from './day.pipe';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { NgChartComponent } from './component/home/ng-chart/ng-chart.component';
     HomeComponent,
     ChartComponent,
     TableComponent,
-    NgChartComponent
+    NgChartComponent,
+    DAYPipe
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import { NgChartComponent } from './component/home/ng-chart/ng-chart.component';
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    NgChartsModule
+    NgChartsModule,
+
 
 
 

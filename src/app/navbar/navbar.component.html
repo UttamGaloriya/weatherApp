@@ -1,7 +1,10 @@
 <nav class="navbar">
     <a routerLink="/home" class="link">WeatherApp</a>
     <a routerLink="/table" class="link">14Day</a>
-    <input type="search" name="serach" id="search" class="searchbox" [(ngModel)]="search"
-        (keydown.enter)="myLocation()">
-    {{search}}
+    <input type="search" name="serach" id="search" class="searchbox" [(ngModel)]="search" (keydown.enter)="myLocation()"
+        placeholder="City">
+    <div class="nav-city">
+        <mat-icon class="ic-map"> location_on</mat-icon>
+        <span>{{city}}</span>
+    </div>
 </nav>
