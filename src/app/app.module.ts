@@ -13,10 +13,13 @@ import { TableComponent } from './component/home/table/table.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgChartsModule } from 'ng2-charts';
 import { NgChartComponent } from './component/home/ng-chart/ng-chart.component';
 import { DAYPipe } from './day.pipe';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -40,6 +43,10 @@ import { DAYPipe } from './day.pipe';
     MatIconModule,
     FormsModule,
     NgChartsModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatSelectModule
 
 
 

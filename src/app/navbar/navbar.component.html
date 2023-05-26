@@ -1,10 +1,44 @@
 <nav class="navbar">
     <a routerLink="/home" class="link">WeatherApp</a>
     <a routerLink="/table" class="link">14Day</a>
-    <input type="search" name="serach" id="search" class="searchbox" [(ngModel)]="search" (keydown.enter)="myLocation()"
-        placeholder="City">
-    <div class="nav-city">
-        <mat-icon class="ic-map"> location_on</mat-icon>
-        <span>{{city}}</span>
+    <!-- <div class="search-div">
+        <input type="search" name="serach" id="search" class="searchbox" [(ngModel)]="search"
+            (keydown.enter)="myLocation()" placeholder="City">
+        <div class="my-location-list" *ngIf="mysearchList">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </div>
+    </div> -->
+    <div class="select-div">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Country</mat-label>
+            <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"
+                [matAutocomplete]="auto" (keyup)="mySearchList()">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>City</mat-label>
+            <mat-select [formControl]="selected" (selectionChange)="myLocation()" [disabled]="!myControl">
+                <mat-option *ngFor="let city of mycity()" [value]="city">{{ city }}</mat-option>
+            </mat-select>
+
+        </mat-form-field>
+        <div class="nav-city">
+            <mat-icon class="ic-map"> location_on</mat-icon>
+            <span>{{city}}</span>
+        </div>
     </div>
+
+
 </nav>
+<div class="center search-load" *ngIf="!loading">
+    <div class="lds-hourglass"></div>
+</div>
+<div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>

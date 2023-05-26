@@ -23,7 +23,11 @@ export class HomeComponent implements OnInit {
         console.log(res), this.data = res,
           this.loading = true
       },
-      (err) => { console.log(err) }
+      (err) => { console.log(err), this.loading = true },
+      () => { this.loading = true }
     )
+
   }
+
+
 }

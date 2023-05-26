@@ -13,6 +13,9 @@ export class WeatherapiService {
   private apiKey = 'aac085654ad642d3b10110625232305';
   private citySubject: BehaviorSubject<string> = new BehaviorSubject<string>('Ahmedabad');
 
+  private token = '9dJCaqZvfLCz6q607oG0nTOcQ_hr0Nzp4r2qGA9442xQNVMUX6IxZlx1p6Vpjz2_fhw'
+
+
   updateCity(city: string): void {
     this.citySubject.next(city);
   }
@@ -25,6 +28,7 @@ export class WeatherapiService {
       })
     );
   }
-
+  getCountry(): Observable<any> {
+    return this.http.get(`https://www.universal-tutorial.com/api/${this.token}`)
+  }
 }
-

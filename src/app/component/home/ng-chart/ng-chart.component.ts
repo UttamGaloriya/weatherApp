@@ -23,7 +23,6 @@ export class NgChartComponent implements OnInit {
   ngOnInit(): void {
 
     this.hourData()
-
   }
 
   hourData(id: number = 0) {
@@ -44,8 +43,8 @@ export class NgChartComponent implements OnInit {
 
 
   mydata(res: any, id: number) {
-    console.log(this.myarry_data);
-    console.log("myid " + id)
+    this.myarry_labels = [null],
+      this.myarry_data = [null]
     res.forEach((element: any) => {
       element.forecast.forecastday[id].hour.forEach((hour: any) => {
         const timeString = hour.time;
@@ -112,4 +111,7 @@ export class NgChartComponent implements OnInit {
     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     return daysOfWeek[dayOfWeek];
   }
+
+
+
 }
